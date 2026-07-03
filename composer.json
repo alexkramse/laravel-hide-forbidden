@@ -1,0 +1,51 @@
+{
+    "name": "alexkramse/laravel-hide-forbidden",
+    "description": "Hide selected Laravel 403 Forbidden responses behind 404 Not Found responses.",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Oleksandr Kramarenko",
+            "email": "dev.kramarenko@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Alexkramse\\LaravelHideForbidden\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Alexkramse\\LaravelHideForbidden\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^8.3",
+        "laravel/framework": "^12.0|^13.0"
+    },
+    "require-dev": {
+        "pestphp/pest": "^4.0",
+        "orchestra/testbench": "^10.0",
+        "laravel/pint": "^1.14",
+        "nunomaduro/collision": "^8.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Alexkramse\\LaravelHideForbidden\\HideForbiddenServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "format": "pint"
+    },
+    "config": {
+        "allow-plugins": {
+            "sort-packages": true,
+            "optimize-autoloader": true,
+            "pestphp/pest-plugin": true
+        }
+    }
+}
