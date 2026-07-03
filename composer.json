@@ -1,9 +1,10 @@
 {
     "name": "alexkramse/laravel-hide-forbidden",
-    "description": "Hide selected Laravel 403 Forbidden responses behind 404 Not Found responses.",
+    "description": "Hide all or selected Laravel 403 Forbidden responses behind 404 Not Found responses.",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "license": "MIT",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Oleksandr Kramarenko",
