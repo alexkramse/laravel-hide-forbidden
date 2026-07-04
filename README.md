@@ -10,12 +10,12 @@ By default, the package is enabled only in production and runs in `middleware` m
 
 ## Requirements
 
-- PHP 8.3+
+- PHP 8.2+
 - Laravel 12 or 13
 
 ## Version
 
-The current stable package version is `1.0.0`.
+The current stable package version is `1.0.1`.
 
 ## Installation
 
