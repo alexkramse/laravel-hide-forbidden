@@ -1,7 +1,7 @@
 ## Laravel Hide Forbidden
 
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
-![Stable Version](https://img.shields.io/badge/stable-v1.0.2-blue)
+![Stable Version](https://img.shields.io/badge/stable-v1.1.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 **Don’t reveal what should stay hidden. 404 is better than 403 when the existence of a resource should remain private.**
@@ -14,12 +14,12 @@ By default, the package is enabled only in production and works via middleware, 
 
 ## Requirements
 
-- PHP 8.2+
-- Laravel 12 | 13
+- PHP 8.1+
+- Laravel 10 | 11 | 12 | 13
 
 ## Version
 
-The current stable package version is `1.0.2`.
+The current stable package version is `1.1.0`.
 
 ## Installation
 
@@ -44,7 +44,7 @@ php artisan vendor:publish --tag=hide-forbidden-config
 The safest way to use the package is to attach the `hide-forbidden` middleware only to routes where you want forbidden responses hidden:
 
 ```php
-Route::middleware('hide-forbidden')->group(function () {
+Route::middleware('hide-forbidden')->group(function (): void {
     Route::get('/admin/secret', SecretController::class);
 });
 ```
@@ -52,7 +52,7 @@ Route::middleware('hide-forbidden')->group(function () {
 With the default config, this route-level middleware mode is the only place conversion happens:
 
 ```php
-'enabled' => env('HIDE_FORBIDDEN_ENABLED', app()->isProduction()),
+'enabled' => env('HIDE_FORBIDDEN_ENABLED', env('APP_ENV', 'production') === 'production'),
 'mode' => env('HIDE_FORBIDDEN_MODE', 'middleware'),
 ```
 

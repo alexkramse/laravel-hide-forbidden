@@ -155,6 +155,60 @@ test('normal not found responses stay not found', function (): void {
     $this->get('/missing')->assertNotFound();
 });
 
+test('html forbidden responses render laravel not found page', function (): void {
+    config()->set('app.debug', false);
+
+    Route::get('/missing-rendered-by-laravel', fn () => abort(404))->name('missing-rendered-by-laravel');
+    secretRoute(fn () => throw new HttpException(403));
+
+    $nativeNotFound = $this->get('/missing-rendered-by-laravel');
+    $hiddenForbidden = $this->get('/secret');
+
+    $nativeNotFound->assertNotFound();
+    $hiddenForbidden->assertNotFound();
+
+    expect($hiddenForbidden->getContent())
+        ->not->toBe('')
+        ->toBe($nativeNotFound->getContent());
+});
+
+test('plain forbidden responses render laravel not found page in middleware mode', function (): void {
+    config()->set('app.debug', false);
+    config()->set('hide-forbidden.mode', 'middleware');
+
+    Route::get('/missing-rendered-by-laravel', fn () => abort(404))->name('missing-rendered-by-laravel');
+    secretRoute(fn () => response('Forbidden', 403))
+        ->middleware('hide-forbidden')
+        ->name('secret');
+
+    $nativeNotFound = $this->get('/missing-rendered-by-laravel');
+    $hiddenForbidden = $this->get('/secret');
+
+    $nativeNotFound->assertNotFound();
+    $hiddenForbidden->assertNotFound();
+
+    expect($hiddenForbidden->getContent())
+        ->not->toBe('Forbidden')
+        ->toBe($nativeNotFound->getContent());
+});
+
+test('json forbidden responses render configured json not found payload in middleware mode', function (): void {
+    config()->set('hide-forbidden.mode', 'middleware');
+    config()->set('hide-forbidden.api_response', ['message' => 'Hidden']);
+
+    secretRoute(fn () => response()->json(['message' => 'Forbidden'], 403))
+        ->middleware('hide-forbidden')
+        ->name('secret');
+
+    $response = $this->get('/secret');
+
+    $response
+        ->assertNotFound()
+        ->assertExactJson(['message' => 'Hidden']);
+
+    expect($response->headers->get('Content-Type'))->toStartWith('application/json');
+});
+
 test('server errors are not converted', function (): void {
     Route::get('/broken', fn () => throw new HttpException(500))->name('broken');
 
