@@ -1,17 +1,21 @@
-# Laravel Hide Forbidden
+## Laravel Hide Forbidden
 
-404 is better than 403 when the existence of a resource should stay private.
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
+![Stable Version](https://img.shields.io/badge/stable-v1.0.1-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-Laravel Hide Forbidden converts selected Laravel `403 Forbidden` responses into `404 Not Found` responses. This is useful for production security when a forbidden response would confirm that an admin area, private model, tenant record, or internal endpoint exists.
+**Don’t reveal what should stay hidden. 404 is better than 403 when the existence of a resource should remain private.**
 
-The package idea was inspired by a short security tip "404 is better than 403" from Nuno Maduro about hiding forbidden resources behind not-found responses.
+Laravel Hide Forbidden improves your application’s security posture by converting selected `403 Forbidden` responses into `404 Not Found`. This helps prevent exposure of sensitive endpoints such as admin panels, tenant resources, private models, or internal APIs.
 
-By default, the package is enabled only in production and runs in `middleware` mode. This keeps global exception handling unchanged until you opt routes into the behavior.
+The idea for this package comes from a security insight shared by Nuno Maduro: *“404 is better than 403”* — emphasizing that security should not leak the existence of protected resources. Thanks to Nuno.
+
+By default, the package is enabled only in production and works via middleware, giving you full control over which routes adopt this behavior without affecting Laravel’s global exception handling.
 
 ## Requirements
 
 - PHP 8.2+
-- Laravel 12 or 13
+- Laravel 12 | 13
 
 ## Version
 
