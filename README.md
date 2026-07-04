@@ -1,7 +1,7 @@
 ## Laravel Hide Forbidden
 
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
-![Stable Version](https://img.shields.io/badge/stable-v1.0.1-blue)
+![Stable Version](https://img.shields.io/badge/stable-v1.0.2-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 **Don’t reveal what should stay hidden. 404 is better than 403 when the existence of a resource should remain private.**
@@ -19,7 +19,7 @@ By default, the package is enabled only in production and works via middleware, 
 
 ## Version
 
-The current stable package version is `1.0.1`.
+The current stable package version is `1.0.2`.
 
 ## Installation
 

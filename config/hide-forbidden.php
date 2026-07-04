@@ -14,7 +14,7 @@ return [
     | hidden authorization failures behave.
     |
     */
-    'enabled' => env('HIDE_FORBIDDEN_ENABLED', app()->isProduction()),
+    'enabled' => env('HIDE_FORBIDDEN_ENABLED', env('APP_ENV', 'production') === 'production'),
 
     /*
     |--------------------------------------------------------------------------
