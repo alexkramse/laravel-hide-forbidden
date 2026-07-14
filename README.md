@@ -17,10 +17,6 @@ By default, the package is enabled only in production and works via middleware, 
 - PHP 8.1+
 - Laravel 10 | 11 | 12 | 13
 
-## Version
-
-The current stable package version is `1.1.0`.
-
 ## Installation
 
 Install the package:
